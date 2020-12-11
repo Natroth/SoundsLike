@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { searchSong } from "../actions/search";
@@ -6,12 +6,21 @@ import { searchSong } from "../actions/search";
 const Search = ({ searchSong, search }) => {
   const submitSearch = async (e) => {
     e.preventDefault();
-    searchSong();
+    var searchTerm = document.getElementById("searchTxt").value;
+    searchSong(searchTerm);
   };
 
   return (
     <div>
-      <input type="submit" onClick={(e) => submitSearch(e)} />
+      <form onSubmit={(e) => submitSearch(e)}>
+        <input
+          type="text"
+          name="search_term"
+          placeholder="Search Song..."
+          id="searchTxt"
+        />
+        <input type="submit" />
+      </form>
     </div>
   );
 };
