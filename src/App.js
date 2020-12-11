@@ -1,32 +1,34 @@
 import { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 //redux
 import { Provider } from "react-redux";
 import store from "./store";
 
 import Search from "./components/Search";
+import SearchResults from "./components/SearchResults";
 
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <Search />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div className="App"></div>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/search" />
+          </Route>
+
+          <Route exact path="/search" component={Search} />
+          <Route exact path="/search_results" component={SearchResults} />
+        </Switch>
+      </Router>
     </Provider>
   );
 }
