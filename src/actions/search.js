@@ -1,6 +1,7 @@
 import { SONG_SEARCH_RESULTS } from "../actions/types";
 import axios from "axios";
 const API_KEY = process.env.REACT_APP_SHAZAM_API_KEY;
+
 //fetch song guesses
 export const searchSong = (searchTerm) => async (dispatch) => {
   const config = {
