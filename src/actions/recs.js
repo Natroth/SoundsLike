@@ -20,5 +20,14 @@ export const getRecs = (songId) => async (dispacth) => {
     },
   };
 
-  const res = await axios(config);
+  try {
+    const res = await axios(config);
+
+    dispacth({
+      type: REC_RESULTS,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };

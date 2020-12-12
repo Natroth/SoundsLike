@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { getRecs } from "../actions/recs";
 
-const SearchResults = ({ results, searchComplete }) => {
+const SearchResults = ({ results, searchComplete, getRecs }) => {
   if (!searchComplete) {
     return <Redirect to="/search" />;
   }
@@ -12,12 +13,22 @@ const SearchResults = ({ results, searchComplete }) => {
     return JSON.stringify(item, null, 2).replace(/\"/g, "");
   };
 
+  const findRecs = async (e, songId) => {
+    e.preventDefault();
+    await getRecs(songId);
+    return <Redirect to="/recs" />;
+  };
+
   var songs = results.payload.tracks.hits;
 
   return (
     <ul>
       {songs.map((item) => (
-        <li>
+        <li
+          onClick={(e) => {
+            findRecs(e, cleanData(item.track.key));
+          }}
+        >
           <img
             src={cleanData(item.track.images.coverart)}
             className="guess_cover_art"
@@ -32,6 +43,7 @@ const SearchResults = ({ results, searchComplete }) => {
 SearchResults.propTypes = {
   searchComplete: PropTypes.bool,
   results: PropTypes.object,
+  getRecs: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = (state) => ({
@@ -39,4 +51,4 @@ const mapStatetoProps = (state) => ({
   results: state.search.results,
 });
 
-export default connect(mapStatetoProps)(SearchResults);
+export default connect(mapStatetoProps, { getRecs })(SearchResults);
