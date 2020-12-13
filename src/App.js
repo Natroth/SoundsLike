@@ -14,6 +14,7 @@ import store from "./store";
 
 import Search from "./components/Search";
 import SearchResults from "./components/SearchResults";
+import RecPage from "./components/RecPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
 
           <Route exact path="/search" component={Search} />
           <Route exact path="/search_results" component={SearchResults} />
+          <Route exact path="/recs" component={RecPage} />
         </Switch>
       </Router>
     </Provider>

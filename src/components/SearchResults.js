@@ -4,7 +4,12 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { getRecs } from "../actions/recs";
 
-const SearchResults = ({ results, searchComplete, getRecs }) => {
+const SearchResults = ({
+  results,
+  searchComplete,
+  getRecs,
+  recSearchComplete,
+}) => {
   if (!searchComplete) {
     return <Redirect to="/search" />;
   }
@@ -16,8 +21,13 @@ const SearchResults = ({ results, searchComplete, getRecs }) => {
   const findRecs = async (e, songId) => {
     e.preventDefault();
     await getRecs(songId);
+    console.log("cleared");
     return <Redirect to="/recs" />;
   };
+
+  if (recSearchComplete) {
+    return <Redirect to="/recs" />;
+  }
 
   var songs = results.payload.tracks.hits;
 
@@ -44,11 +54,13 @@ SearchResults.propTypes = {
   searchComplete: PropTypes.bool,
   results: PropTypes.object,
   getRecs: PropTypes.func.isRequired,
+  recSearchComplete: PropTypes.bool,
 };
 
 const mapStatetoProps = (state) => ({
   searchComplete: state.search.searchComplete,
   results: state.search.results,
+  recSearchComplete: state.recs.searchComplete,
 });
 
 export default connect(mapStatetoProps, { getRecs })(SearchResults);
