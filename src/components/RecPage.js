@@ -8,7 +8,27 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
     return <Redirect to="/search" />;
   }
 
-  return <div>yoyoyo</div>;
+  const cleanData = (item) => {
+    return JSON.stringify(item, null, 2).replace(/\"/g, "");
+  };
+
+  const recTracks = results.payload.tracks;
+  const tenRecTracks = recTracks.slice(-10);
+  console.log(tenRecTracks);
+
+  return (
+    <ul>
+      {tenRecTracks.map((item) => (
+        <li>
+          <img
+            src={cleanData(item.images.coverart)}
+            className="guess_cover_art"
+          />
+          {cleanData(item.title)} - {cleanData(item.subtitle)}
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 RecPage.propTypes = {
@@ -19,7 +39,7 @@ RecPage.propTypes = {
 
 const mapStatetoProps = (state) => ({
   searchComplete: state.search.searchComplete,
-  results: state.search.results,
+  results: state.recs.results,
   recSearchComplete: state.recs.searchComplete,
 });
 export default connect(mapStatetoProps)(RecPage);
