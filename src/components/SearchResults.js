@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { getRecs } from "../actions/recs";
+import disc from "../images/disc1.webp";
 
 const SearchResults = ({
   results,
@@ -15,7 +16,7 @@ const SearchResults = ({
   }
 
   const cleanData = (item) => {
-    return JSON.stringify(item, null, 2).replace(/\"/g, "");
+    return JSON.stringify(item, null, 2).replace(/"/g, "");
   };
 
   const findRecs = async (e, songId) => {
@@ -33,19 +34,27 @@ const SearchResults = ({
 
   return (
     <ul>
-      {songs.map((item) => (
-        <li
-          onClick={(e) => {
-            findRecs(e, cleanData(item.track.key));
-          }}
-        >
-          <img
-            src={cleanData(item.track.images.coverart)}
-            className="guess_cover_art"
-          />
-          {cleanData(item.track.title)} - {cleanData(item.track.subtitle)}
-        </li>
-      ))}
+      {songs.map((item, index) => {
+        if (!item.track.images) {
+          item.track.images = { coverart: "" };
+          item.track.images.coverart = disc;
+        }
+        return (
+          <li
+            onClick={(e) => {
+              findRecs(e, cleanData(item.track.key));
+            }}
+            key={index}
+          >
+            <img
+              src={cleanData(item.track.images.coverart)}
+              className="guess_cover_art"
+              alt="cover-art"
+            />
+            {cleanData(item.track.title)} - {cleanData(item.track.subtitle)}
+          </li>
+        );
+      })}
     </ul>
   );
 };

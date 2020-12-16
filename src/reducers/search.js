@@ -1,11 +1,11 @@
-import { SET_PLAYLIST, SET_SONG, SONG_SEARCH_RESULTS } from "../actions/types";
+import { SONG_SEARCH_RESULTS } from "../actions/types";
 
 const initialState = {
   searchComplete: false,
   results: null,
 };
 
-export default function (state = initialState, action) {
+export default function searchReducer(state = initialState, action) {
   const { type, ...payload } = action;
   switch (type) {
     case SONG_SEARCH_RESULTS:

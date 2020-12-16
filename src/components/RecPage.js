@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -48,7 +48,7 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
   // stringify
 
   const cleanData = (item) => {
-    return JSON.stringify(item, null, 2).replace(/\"/g, "");
+    return JSON.stringify(item, null, 2).replace(/"/g, "");
   };
 
   // play preview of song and change play button
@@ -86,6 +86,7 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
             <img
               src={cleanData(item.images.coverart)}
               className="guess_cover_art"
+              alt="cover-art"
             />
             {cleanData(item.title)} - {cleanData(item.subtitle)}
             <ReactAudioPlayer
