@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -11,9 +11,27 @@ import disc from "../images/disc1.webp";
 import notFound from "../audio/notFound.mp3";
 
 const RecPage = ({ searchComplete, recSearchComplete, results }) => {
+  const [playButton, setPlayButton] = useState({
+    1: faPlay,
+    2: faPlay,
+    3: faPlay,
+    4: faPlay,
+    5: faPlay,
+    6: faPlay,
+    7: faPlay,
+    8: faPlay,
+    9: faPlay,
+    0: faPlay,
+  });
+
   if (!recSearchComplete) {
     return <Redirect to="/search" />;
   }
+
+  // Only 10 recs per search
+
+  const recTracks = results.payload.tracks;
+  const tenRecTracks = recTracks.slice(-10);
 
   // one song plays at a time
 
@@ -33,34 +51,24 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
     return JSON.stringify(item, null, 2).replace(/\"/g, "");
   };
 
-  // Only 10 recs per search
-
-  const recTracks = results.payload.tracks;
-  const tenRecTracks = recTracks.slice(-10);
-  console.log(tenRecTracks);
-
   // play preview of song and change play button
 
-  const playPreview = (e, songId) => {
+  const playPreview = (e, songId, index) => {
     e.preventDefault();
     var myAudio = document.getElementById(songId);
-    var playIcon = document.getElementById(songId + "ic");
-    //   myAudio.paused ? (myAudio.play()) : myAudio.pause();
 
     if (myAudio.paused) {
       myAudio.play();
-      //     $("#" + playIcon).attr("icon", { faPause });
-      console.log("workd");
+      setPlayButton({ ...playButton, [index]: faPause });
     } else {
       myAudio.pause();
-      //   $("#" + playIcon).attr("icon", { faPlay });
-      console.log("workd");
+      setPlayButton({ ...playButton, [index]: faPlay });
     }
   };
 
   return (
     <ul>
-      {tenRecTracks.map((item) => {
+      {tenRecTracks.map((item, index) => {
         if (!item.images) {
           item.images = { coverart: "" };
           item.images.coverart = disc;
@@ -71,7 +79,10 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
         }
 
         return (
-          <li onClick={(e) => playPreview(e, cleanData(item.key))}>
+          <li
+            onClick={(e) => playPreview(e, cleanData(item.key), index)}
+            key={index}
+          >
             <img
               src={cleanData(item.images.coverart)}
               className="guess_cover_art"
@@ -81,7 +92,7 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
               id={cleanData(item.key)}
               src={item.hub.actions[1].uri}
             />
-            <FontAwesomeIcon icon={faPlay} id={item.key + "ic"} />
+            <FontAwesomeIcon icon={playButton[index]} />
           </li>
         );
       })}
