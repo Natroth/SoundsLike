@@ -28,6 +28,10 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
     return <Redirect to="/search" />;
   }
 
+  if (!results.payload.tracks) {
+    return <Redirect to="/error_page" />;
+  }
+
   // Only 10 recs per search
 
   const recTracks = results.payload.tracks;

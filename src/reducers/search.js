@@ -1,4 +1,4 @@
-import { SONG_SEARCH_RESULTS } from "../actions/types";
+import { SONG_SEARCH_RESULTS, RESET_SEARCH } from "../actions/types";
 
 const initialState = {
   searchComplete: false,
@@ -13,6 +13,12 @@ export default function searchReducer(state = initialState, action) {
         ...state,
         searchComplete: true,
         results: payload,
+      };
+    case RESET_SEARCH:
+      return {
+        ...state,
+        searchComplete: false,
+        results: null,
       };
 
     default:

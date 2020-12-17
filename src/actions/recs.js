@@ -1,4 +1,4 @@
-import { REC_RESULTS } from "../actions/types";
+import { REC_RESULTS, RESET_RECS } from "../actions/types";
 import axios from "axios";
 const API_KEY = process.env.REACT_APP_SHAZAM_API_KEY;
 
@@ -26,6 +26,16 @@ export const getRecs = (songId) => async (dispacth) => {
     dispacth({
       type: REC_RESULTS,
       payload: res.data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const resetRecs = () => (dispatch) => {
+  try {
+    dispatch({
+      type: RESET_RECS,
     });
   } catch (error) {
     console.error(error);

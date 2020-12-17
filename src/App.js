@@ -12,6 +12,7 @@ import store from "./store";
 import Search from "./components/Search";
 import SearchResults from "./components/SearchResults";
 import RecPage from "./components/RecPage";
+import Error from "../src/components/Error";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/search" component={Search} />
           <Route exact path="/search_results" component={SearchResults} />
           <Route exact path="/recs" component={RecPage} />
+          <Route exact path="/error_page" component={Error} />
         </Switch>
       </Router>
     </Provider>

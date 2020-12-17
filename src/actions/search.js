@@ -1,4 +1,4 @@
-import { SONG_SEARCH_RESULTS } from "../actions/types";
+import { SONG_SEARCH_RESULTS, RESET_SEARCH } from "../actions/types";
 import axios from "axios";
 const API_KEY = process.env.REACT_APP_SHAZAM_API_KEY;
 
@@ -26,6 +26,16 @@ export const searchSong = (searchTerm) => async (dispatch) => {
     dispatch({
       type: SONG_SEARCH_RESULTS,
       payload: res.data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const resetSearch = () => (dispatch) => {
+  try {
+    dispatch({
+      type: RESET_SEARCH,
     });
   } catch (error) {
     console.error(error);
