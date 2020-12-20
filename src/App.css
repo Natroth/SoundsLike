@@ -7,10 +7,7 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@media only screen and (max-width: 600px) {
 }
 
 @font-face {
@@ -68,4 +65,37 @@
   width: 5rem;
   margin: auto;
   font-family: "Raleway-Medium";
+}
+
+.songList {
+  list-style-type: none;
+  margin: auto;
+  font-family: "Raleway-Regular";
+  font-size: 2.7vw;
+  width: 80%;
+  padding: 0;
+}
+
+.songLine {
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  margin: 8px;
+  border: 1px solid #696969;
+  padding: 10px;
+  border-radius: 7px;
+  transition: all 0.5s ease;
+}
+
+.songLine:hover {
+  padding: 15apx;
+}
+
+.coverArt {
+  width: 10vw;
+  max-width: 4rem;
+  padding-right: 1rem;
+}
+
+.songTitleArtist {
 }

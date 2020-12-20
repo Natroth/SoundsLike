@@ -40,7 +40,8 @@ const SearchResults = ({
 
   return (
     <div>
-      <ul>
+      <h1>Did You Mean...</h1>
+      <ul className="songList">
         {songs.map((item, index) => {
           if (!item.track.images) {
             item.track.images = { coverart: "" };
@@ -52,13 +53,17 @@ const SearchResults = ({
                 findRecs(e, cleanData(item.track.key));
               }}
               key={index}
+              className="songLine"
             >
               <img
                 src={cleanData(item.track.images.coverart)}
-                className="guess_cover_art"
+                className="coverArt"
                 alt="cover-art"
               />
-              {cleanData(item.track.title)} - {cleanData(item.track.subtitle)}
+              <div className="songTitleArtist">
+                {" "}
+                {cleanData(item.track.title)} - {cleanData(item.track.subtitle)}{" "}
+              </div>
             </li>
           );
         })}
