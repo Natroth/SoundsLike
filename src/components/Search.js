@@ -22,23 +22,25 @@ const Search = ({ searchSong, searchComplete }) => {
 
   return (
     <div>
-      <form onSubmit={(e) => submitSearch(e)}>
-        <input
-          type="text"
-          name="search_term"
-          placeholder="Search Song..."
-          id="searchTxt"
-        />
-        <input type="submit" />
-      </form>
-      <div id="loader" style={{ display: "none" }}>
-        <p>Please Wait While We Find What You're Looking For </p>
-        <ReactLoading
-          type={"bars"}
-          color={"linear-gradient(#24a4af, #696969)"}
-          height={"20%"}
-          width={"20%"}
-        />
+      <div>
+        <form onSubmit={(e) => submitSearch(e)} className="searchForm">
+          <input
+            type="text"
+            name="search_term"
+            placeholder="Search Song..."
+            id="searchTxt"
+          />
+          <input type="submit" value="Search" className="searchButton" />
+        </form>
+        <div id="loader" style={{ display: "none" }}>
+          <p>Please Wait While We Find What You're Looking For </p>
+          <ReactLoading
+            type={"bars"}
+            color={"linear-gradient(#24a4af, #696969)"}
+            height={"20%"}
+            width={"20%"}
+          />
+        </div>
       </div>
     </div>
   );
