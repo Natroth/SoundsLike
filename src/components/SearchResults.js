@@ -40,7 +40,7 @@ const SearchResults = ({
 
   return (
     <div>
-      <h1>Did You Mean...</h1>
+      <h1 className="youMean">Did You Mean...</h1>
       <ul className="songList">
         {songs.map((item, index) => {
           if (!item.track.images) {
@@ -69,12 +69,12 @@ const SearchResults = ({
         })}
       </ul>
       <div id="loader" style={{ display: "none" }}>
-        <p>Please Wait While We Find What You're Looking For </p>
         <ReactLoading
           type={"bars"}
-          color={"linear-gradient(#24a4af, #696969)"}
-          height={"20%"}
-          width={"20%"}
+          color={"#28a4af"}
+          height={"10rem"}
+          width={"10rem"}
+          className="loader"
         />
       </div>
     </div>

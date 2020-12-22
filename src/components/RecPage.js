@@ -71,37 +71,47 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
   };
 
   return (
-    <ul>
-      {tenRecTracks.map((item, index) => {
-        if (!item.images) {
-          item.images = { coverart: "" };
-          item.images.coverart = disc;
-        }
+    <div>
+      <h1 className="youMean">10 Songs Just For You...</h1>
 
-        if (!item.hub.actions) {
-          item.hub.actions = [{}, { uri: notFound }];
-        }
+      <ul className="songList">
+        {tenRecTracks.map((item, index) => {
+          if (!item.images) {
+            item.images = { coverart: "" };
+            item.images.coverart = disc;
+          }
 
-        return (
-          <li
-            onClick={(e) => playPreview(e, cleanData(item.key), index)}
-            key={index}
-          >
-            <img
-              src={cleanData(item.images.coverart)}
-              className="guess_cover_art"
-              alt="cover-art"
-            />
-            {cleanData(item.title)} - {cleanData(item.subtitle)}
-            <ReactAudioPlayer
-              id={cleanData(item.key)}
-              src={item.hub.actions[1].uri}
-            />
-            <FontAwesomeIcon icon={playButton[index]} />
-          </li>
-        );
-      })}
-    </ul>
+          if (!item.hub.actions) {
+            item.hub.actions = [{}, { uri: notFound }];
+          }
+
+          return (
+            <li
+              onClick={(e) => playPreview(e, cleanData(item.key), index)}
+              key={index}
+              className="songLine recSongLine"
+            >
+              <div className="songInfoRec">
+                <img
+                  src={cleanData(item.images.coverart)}
+                  className="coverArt"
+                  alt="cover-art"
+                />
+                {cleanData(item.title)} - {cleanData(item.subtitle)}
+                <ReactAudioPlayer
+                  id={cleanData(item.key)}
+                  src={cleanData(item.hub.actions[1].uri)}
+                />
+              </div>
+              <div>
+                {" "}
+                <FontAwesomeIcon icon={playButton[index]} />{" "}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 

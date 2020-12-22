@@ -33,12 +33,12 @@ const Search = ({ searchSong, searchComplete }) => {
           <input type="submit" value="Search" className="searchButton" />
         </form>
         <div id="loader" style={{ display: "none" }}>
-          <p>Please Wait While We Find What You're Looking For </p>
           <ReactLoading
             type={"bars"}
-            color={"linear-gradient(#24a4af, #696969)"}
-            height={"20%"}
-            width={"20%"}
+            color={"#28a4af"}
+            height={"10rem"}
+            width={"10rem"}
+            className="loader"
           />
         </div>
       </div>

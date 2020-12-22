@@ -85,10 +85,11 @@
   padding: 10px;
   border-radius: 7px;
   transition: all 0.5s ease;
+  cursor: pointer;
 }
 
 .songLine:hover {
-  padding: 15apx;
+  padding: 15px;
 }
 
 .coverArt {
@@ -97,5 +98,30 @@
   padding-right: 1rem;
 }
 
-.songTitleArtist {
+.youMean {
+  width: 90%;
+  font-family: "Raleway-Medium";
+  margin: auto;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.loader {
+  margin: auto;
+}
+
+.recSongLine {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  padding: 10px 17px;
+}
+
+.songInfoRec {
+  display: flex;
+  flex-flow: revert;
+  align-items: center;
 }
