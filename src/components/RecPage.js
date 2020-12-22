@@ -11,7 +11,7 @@ import disc from "../images/disc1.webp";
 import notFound from "../audio/notFound.mp3";
 
 const RecPage = ({ searchComplete, recSearchComplete, results }) => {
-  const [playButton, setPlayButton] = useState({
+  const initialPlayButton = {
     1: faPlay,
     2: faPlay,
     3: faPlay,
@@ -22,7 +22,9 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
     8: faPlay,
     9: faPlay,
     0: faPlay,
-  });
+  };
+
+  const [playButton, setPlayButton] = useState(initialPlayButton);
 
   if (!recSearchComplete) {
     return <Redirect to="/search" />;
@@ -85,6 +87,9 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
             item.hub.actions = [{}, { uri: notFound }];
           }
 
+          if (!item.hub.actions[1]) {
+            item.hub.actions = [{}, { uri: notFound }];
+          }
           return (
             <li
               onClick={(e) => playPreview(e, cleanData(item.key), index)}
