@@ -24,7 +24,7 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
     0: faPlay,
   };
 
-  const [playButton, setPlayButton] = useState(initialPlayButton);
+  var [playButton, setPlayButton] = useState(initialPlayButton);
 
   if (!recSearchComplete) {
     return <Redirect to="/search" />;
@@ -65,6 +65,7 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
 
     if (myAudio.paused) {
       myAudio.play();
+      playButton = initialPlayButton;
       setPlayButton({ ...playButton, [index]: faPause });
     } else {
       myAudio.pause();
