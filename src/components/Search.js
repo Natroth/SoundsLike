@@ -40,9 +40,16 @@ const Search = ({ searchSong, searchComplete }) => {
               id="searchTxt"
               className="searchBar"
             />
-            <button type="submit" className="searchButton">
-              <FontAwesomeIcon icon={faSearch} />{" "}
-            </button>
+            <input
+              type="submit"
+              id="searchSubmit"
+              style={{ display: "none" }}
+            />
+
+            <label for="searchSubmit" className="searchButton">
+              {" "}
+              <FontAwesomeIcon icon={faSearch} />
+            </label>
           </form>
         </div>
       </div>

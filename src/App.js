@@ -13,6 +13,7 @@ import Search from "./components/Search";
 import SearchResults from "./components/SearchResults";
 import RecPage from "./components/RecPage";
 import Error from "../src/components/Error";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -24,11 +25,12 @@ function App() {
               <Redirect to="/search" />
             </Route>
 
-            <Route exact path="/search" component={Search} />
-            <Route exact path="/search_results" component={SearchResults} />
-            <Route exact path="/recs" component={RecPage} />
-            <Route exact path="/error_page" component={Error} />
+            <Route path="/search" component={Search} />
+            <Route path="/search_results" component={SearchResults} />
+            <Route path="/recs" component={RecPage} />
+            <Route path="/error_page" component={Error} />
           </Switch>
+          <Footer />
         </div>
       </Router>
     </Provider>
