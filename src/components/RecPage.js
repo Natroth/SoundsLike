@@ -9,8 +9,16 @@ import { faPause } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import disc from "../images/disc1.webp";
 import notFound from "../audio/notFound.mp3";
+import { resetSearch } from "../actions/search";
+import { resetRecs } from "../actions/recs";
 
-const RecPage = ({ searchComplete, recSearchComplete, results }) => {
+const RecPage = ({
+  searchComplete,
+  recSearchComplete,
+  results,
+  resetRecs,
+  resetSearch,
+}) => {
   const initialPlayButton = {
     1: faPlay,
     2: faPlay,
@@ -50,6 +58,11 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
         });
     });
   });
+
+  const goBack = () => {
+    resetRecs();
+    resetSearch();
+  };
 
   // stringify
 
@@ -117,6 +130,9 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
           );
         })}
       </ul>
+      <div className="tryAgain outlineFont" onClick={() => goBack()}>
+        Try again with something else?
+      </div>
     </div>
   );
 };
@@ -132,4 +148,4 @@ const mapStatetoProps = (state) => ({
   results: state.recs.results,
   recSearchComplete: state.recs.searchComplete,
 });
-export default connect(mapStatetoProps)(RecPage);
+export default connect(mapStatetoProps, { resetRecs, resetSearch })(RecPage);

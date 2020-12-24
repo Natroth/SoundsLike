@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { resetSearch } from "../actions/search";
 import { resetRecs } from "../actions/recs";
 import { connect } from "react-redux";
+import logo from "../images/logo.png";
 
 const Error = ({
   resetSearch,
@@ -22,9 +23,14 @@ const Error = ({
   }
 
   return (
-    <div>
-      <div>Hmm... We Couldn't Find Anything Matching Your Search</div>
-      <span onClick={() => goBack()}>Try again with something else?</span>
+    <div style={{ height: "100vh" }} className="outlineFont">
+      <img src={logo} alt="logo" className="logo" />
+      <h1 className="youMean">
+        Hmm... We Couldn't Find Anything Matching Your Search
+      </h1>
+      <div className="tryAgain" onClick={() => goBack()}>
+        Try again with something else?
+      </div>
     </div>
   );
 };

@@ -186,3 +186,13 @@ button:focus {
   -webkit-text-stroke-color: #e3e3e3;
   font-family: "Raleway-Medium";
 }
+
+.tryAgain {
+  padding: 9px;
+  background-color: #f95959;
+  border-radius: 7px;
+  margin: auto;
+  margin-top: 2rem;
+  width: 15rem;
+  cursor: pointer;
+}
