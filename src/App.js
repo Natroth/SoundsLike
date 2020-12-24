@@ -18,17 +18,18 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div className="App"></div>
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/search" />
-          </Route>
+        <div className="App">
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/search" />
+            </Route>
 
-          <Route exact path="/search" component={Search} />
-          <Route exact path="/search_results" component={SearchResults} />
-          <Route exact path="/recs" component={RecPage} />
-          <Route exact path="/error_page" component={Error} />
-        </Switch>
+            <Route exact path="/search" component={Search} />
+            <Route exact path="/search_results" component={SearchResults} />
+            <Route exact path="/recs" component={RecPage} />
+            <Route exact path="/error_page" component={Error} />
+          </Switch>
+        </div>
       </Router>
     </Provider>
   );

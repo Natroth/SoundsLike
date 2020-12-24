@@ -75,7 +75,7 @@ const RecPage = ({ searchComplete, recSearchComplete, results }) => {
 
   return (
     <div>
-      <h1 className="youMean">10 Songs Just For You...</h1>
+      <h1 className="youMean outlineFont">10 Songs Just For You...</h1>
 
       <ul className="songList">
         {tenRecTracks.map((item, index) => {

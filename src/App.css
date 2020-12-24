@@ -1,5 +1,12 @@
+.body {
+  height: 100%;
+  color: #455d7a;
+}
+
 .App {
   text-align: center;
+  background-color: #455d7a;
+  width: 100%;
 }
 
 .App-logo {
@@ -7,7 +14,17 @@
   pointer-events: none;
 }
 
-@media only screen and (max-width: 600px) {
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+@media screen and (min-width: 600px) {
+  .songList {
+    font-size: 20px !important;
+  }
 }
 
 @font-face {
@@ -56,29 +73,36 @@
   flex-flow: column;
   justify-content: space-between;
   height: 5rem;
-  width: 30%;
+  width: 50%;
   min-width: 20rem;
   margin: auto;
 }
 
 .searchButton {
-  width: 5rem;
+  width: 3rem;
   margin: auto;
   font-family: "Raleway-Medium";
+  font-size: 2rem;
+  border: none;
+  background-color: #e3e3e3;
+  color: #f95959;
+  padding: 5px;
+  border-radius: 30px;
+  margin-top: 1.5rem;
 }
 
 .songList {
   list-style-type: none;
   margin: auto;
   font-family: "Raleway-Regular";
-  font-size: 2.7vw;
+  font-size: 4vw;
   width: 80%;
   padding: 0;
 }
 
 .songLine {
   display: flex;
-  flex-flow: wrap;
+  text-align: left;
   align-items: center;
   margin: 8px;
   border: 1px solid #696969;
@@ -86,6 +110,7 @@
   border-radius: 7px;
   transition: all 0.5s ease;
   cursor: pointer;
+  background-color: #e3e3e3;
 }
 
 .songLine:hover {
@@ -102,12 +127,13 @@
   width: 90%;
   font-family: "Raleway-Medium";
   margin: auto;
-  margin-top: 1rem;
   padding: 1rem;
+  padding-top: 3rem;
 }
 
 .loader {
   margin: auto;
+  margin-top: 2.5rem;
 }
 
 .recSongLine {
@@ -124,4 +150,39 @@
   display: flex;
   flex-flow: revert;
   align-items: center;
+}
+
+.logo {
+  width: 35%;
+  min-width: 20rem;
+  margin: auto;
+}
+
+.searchPageWrapper {
+  display: flex;
+  flex-flow: column;
+  background-color: #455d7a;
+  height: 70vh;
+}
+
+.searchBar {
+  font-family: "Raleway-Medium";
+  font-size: 2rem;
+  color: #606060;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+.explain {
+  font-size: 2rem;
+  width: 90%;
+  margin: auto;
+}
+
+.outlineFont {
+  color: #f95959;
+  /* Prefix required. Even Firefox only supports the -webkit- prefix */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #e3e3e3;
+  font-family: "Raleway-Medium";
 }

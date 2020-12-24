@@ -39,8 +39,8 @@ const SearchResults = ({
   var songs = results.payload.tracks.hits;
 
   return (
-    <div>
-      <h1 className="youMean">Did You Mean...</h1>
+    <div style={{ height: "100vh" }}>
+      <h1 className="youMean outlineFont">Did You Mean...</h1>
       <ul className="songList">
         {songs.map((item, index) => {
           if (!item.track.images) {
@@ -71,9 +71,9 @@ const SearchResults = ({
       <div id="loader" style={{ display: "none" }}>
         <ReactLoading
           type={"bars"}
-          color={"#28a4af"}
-          height={"10rem"}
-          width={"10rem"}
+          color={"#e3e3e3"}
+          height={"8rem"}
+          width={"8rem"}
           className="loader"
         />
       </div>
